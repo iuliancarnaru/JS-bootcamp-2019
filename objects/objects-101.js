@@ -1,10 +1,10 @@
 // Object has properties (key - value pair)
 
 let myBook = {
-    title: "A New Earth",
-    author: "Eckhart Tolle",
-    pageCount: 326
-}
+  title: "A New Earth",
+  author: "Eckhart Tolle",
+  pageCount: 326
+};
 
 console.log(`${myBook.title} by ${myBook.author}`);
 
@@ -15,12 +15,16 @@ console.log(`${myBook.title} by ${myBook.author}`);
 // ----- CHALLENGE -----
 
 let person = {
-    name: "Iulian Carnaru",
-    age: 34,
-    location: "London"
-}
+  name: "Iulian Carnaru",
+  age: 34,
+  location: "London"
+};
 
-console.log(`Hi, I'm ${person.name}. I'm ${person.age} years old and I live in ${person.location}.`);
+console.log(
+  `Hi, I'm ${person.name}. I'm ${person.age} years old and I live in ${
+    person.location
+  }.`
+);
 
 person.age = person.age + 1;
 

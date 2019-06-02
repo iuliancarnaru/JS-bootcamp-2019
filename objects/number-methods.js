@@ -1,4 +1,4 @@
-let num = 103.9410;
+let num = 103.941;
 
 console.log(num.toFixed(2)); // 103.94
 
@@ -18,13 +18,13 @@ console.log(randomNumber);
 
 // ----- CHALLENGE -----
 
-let makeGuess = function (userNumber) {
-    let min = 1;
-    let max = 5;
+let makeGuess = function(userNumber) {
+  let min = 1;
+  let max = 5;
 
-    let randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
-    return randomNumber === userNumber;
-}
+  let randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+  return randomNumber === userNumber;
+};
 
 console.log(makeGuess(1));
 console.log(makeGuess(3));

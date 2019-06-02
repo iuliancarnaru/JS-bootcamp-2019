@@ -1,31 +1,33 @@
 let myAccount = {
-    name: "Iulian Carnaru",
-    expenses: 0,
-    income: 0
-}
+  name: "Iulian Carnaru",
+  expenses: 0,
+  income: 0
+};
 
-let addExpense = function (account, amount) {
-    // account = {}; // <--- we break the binding with the myAccount object
-    account.expenses = account.expenses + amount
-    //console.log(account);
-}
+let addExpense = function(account, amount) {
+  // account = {}; // <--- we break the binding with the myAccount object
+  account.expenses = account.expenses + amount;
+  //console.log(account);
+};
 
-let addIncome = function (account, amount) {
-    account.income = account.income + amount
-}
+let addIncome = function(account, amount) {
+  account.income = account.income + amount;
+};
 
-let resetAccount = function (account) {
-    account.income = 0;
-    account.expenses = 0;
-}
+let resetAccount = function(account) {
+  account.income = 0;
+  account.expenses = 0;
+};
 
-let getAccountSummary = function (account) {
-    let balance = account.income - account.expenses;
-    return `Account for ${account.name} has $${balance}. $${account.income} in income. $${account.expenses} in expenses`
-}
+let getAccountSummary = function(account) {
+  let balance = account.income - account.expenses;
+  return `Account for ${account.name} has $${balance}. $${
+    account.income
+  } in income. $${account.expenses} in expenses`;
+};
 
-addExpense(myAccount, 12.50);
-addIncome(myAccount, 1200)
+addExpense(myAccount, 12.5);
+addIncome(myAccount, 1200);
 addExpense(myAccount, 450);
 
 console.log(getAccountSummary(myAccount));
