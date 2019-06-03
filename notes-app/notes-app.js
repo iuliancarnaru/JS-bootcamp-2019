@@ -11,14 +11,39 @@ const notes = [
       title: "Office modification",
       body: "Get a new 4k monitor"
     }
-  ];
+];
+  
+const filters = {
+  searchText: ''
+}
 
-const paragraphs = document.querySelectorAll('p');
+const renderNotes = function (notes, filters) {
+  const filteredNotes = notes.filter(function (note) {
+    return note.title.toLowerCase().includes(filters.searchText.toLowerCase());
+  });
 
-paragraphs.forEach(function (paragraph) {
-    paragraph.textContent = '***'
+  document.querySelector('#notes').innerHTML = '';
+  
+  filteredNotes.forEach(function (note) {
+    const noteElement = document.createElement('p');
+    noteElement.textContent = note.title;
+    document.querySelector('#notes').appendChild(noteElement);
+  })
+}
+
+renderNotes(notes, filters);
+
+document.querySelector('#create-note').addEventListener('click', function (event) {
+  console.log('Note created');
 });
 
-const newParagraph = document.createElement('p');
-newParagraph.textContent = 'This is a new element from JS';
-document.querySelector('body').appendChild(newParagraph);
+document.querySelector('#remove-all').addEventListener('click', function (event) {
+  document.querySelectorAll('.note').forEach(function (note) {
+    note.remove();
+  });
+});
+
+document.querySelector('#search-text').addEventListener('input', function (event) {
+  filters.searchText = event.target.value;
+  renderNotes(notes, filters);
+});
