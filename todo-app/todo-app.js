@@ -9,20 +9,26 @@ const todos = [
     },
     {
       text: "Finish the book",
-      completed: false
+      completed: true
     },
     {
       text: "Cut hair",
-      completed: true
+      completed: false
     }
 ];
-  
-const paragraphs = document.querySelectorAll('p');
 
-paragraphs.forEach(function (paragraph) {
-    if (paragraph.textContent.includes('the')) {
-        paragraph.remove();
-    }
+// You have 2 todos left (p)
+const incompleteTodos = todos.filter(function (todo) {
+    return !todo.completed
 });
 
+const summary = document.createElement('h2');
+summary.textContent = `You have ${incompleteTodos.length} todos.`;
+document.querySelector('body').appendChild(summary);
 
+// Add a (p) for each todo
+todos.forEach(function (todo) {
+    const p = document.createElement('p');
+    p.textContent = todo.text;
+    document.querySelector('body').appendChild(p);
+});
