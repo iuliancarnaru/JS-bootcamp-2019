@@ -45,17 +45,19 @@ const renderTodos = function (todos, filters) {
 
 renderTodos(todos, filters);
 
-
-// working with button
-document.querySelector('#add-todo').addEventListener('click', function (event) {
-  console.log('Todo added');
-}); 
-
-document.querySelector('#new-todo-text').addEventListener('input', function (event) {
-  console.log('todo added');
-})
-
 document.querySelector('#search-text').addEventListener('input', function (event) {
   filters.searchText = event.target.value;
   renderTodos(todos, filters);
-})
+});
+
+document.querySelector('#todo-form').addEventListener('submit', function (event) {
+  event.preventDefault();
+
+  todos.push({
+    text: event.target.elements.todoText.value,
+    completed: false
+  });
+
+  event.target.elements.todoText.value = '';
+  renderTodos(todos, filters);
+});

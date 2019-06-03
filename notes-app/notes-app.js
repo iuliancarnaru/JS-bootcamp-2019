@@ -33,17 +33,14 @@ const renderNotes = function (notes, filters) {
 
 renderNotes(notes, filters);
 
-document.querySelector('#create-note').addEventListener('click', function (event) {
-  console.log('Note created');
-});
-
-document.querySelector('#remove-all').addEventListener('click', function (event) {
-  document.querySelectorAll('.note').forEach(function (note) {
-    note.remove();
-  });
-});
-
 document.querySelector('#search-text').addEventListener('input', function (event) {
   filters.searchText = event.target.value;
   renderNotes(notes, filters);
 });
+
+document.querySelector('#name-form').addEventListener('submit', function (event) {
+  event.preventDefault();
+  console.log(event.target.elements.firstName.value);
+  event.target.elements.firstName.value = '';
+});
+

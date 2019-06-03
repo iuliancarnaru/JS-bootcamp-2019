@@ -9,10 +9,12 @@
 
   <body>
     <h1>Todos </h1>
-    <input type="text" name="new-todo-text" id="new-todo-text" placeholder="Enter something to do">
     <input type="text" name="search-text" id="search-text" placeholder="Search todo">
-    <button id="add-todo">Add todo</button>
     <div id="todos"><!-- JS inserted todos--></div>
+    <form id="todo-form">
+      <input type="text" name="todoText" placeholder="Add new todo">
+      <button>Add todo</button>
+    </form>
 
     <script src="./todo-app.js"></script>
   </body>
