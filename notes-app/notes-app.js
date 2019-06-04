@@ -39,3 +39,9 @@ document
     filters.searchText = event.target.value;
     renderNotes(notes, filters);
   });
+
+document
+  .querySelector("#filter-by")
+  .addEventListener("change", function(event) {
+    console.log(event.target.value);
+  });
