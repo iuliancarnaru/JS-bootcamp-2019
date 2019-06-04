@@ -17,6 +17,9 @@ const filters = {
   searchText: ""
 };
 
+const userJSON = localStorage.getItem("user");
+const user = JSON.parse(userJSON);
+
 const renderNotes = function(notes, filters) {
   const filteredNotes = notes.filter(function(note) {
     return note.title.toLowerCase().includes(filters.searchText.toLowerCase());
