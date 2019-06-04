@@ -8,11 +8,21 @@
   </head>
 
   <body>
-    <h1>Todos </h1>
-    <input type="text" name="search-text" id="search-text" placeholder="Search todo">
+    <h1>Todos</h1>
+    <input
+      type="text"
+      name="search-text"
+      id="search-text"
+      placeholder="Search todo"
+    />
+    <label for="hide-completed">
+      <input type="checkbox" id="hide-completed" />Hide completed
+    </label>
+
     <div id="todos"><!-- JS inserted todos--></div>
+
     <form id="todo-form">
-      <input type="text" name="todoText" placeholder="Add new todo">
+      <input type="text" name="todoText" placeholder="Add new todo" />
       <button>Add todo</button>
     </form>
 
