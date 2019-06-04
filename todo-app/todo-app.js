@@ -1,26 +1,14 @@
-const todos = [
-  {
-    text: "Go to gym",
-    completed: false
-  },
-  {
-    text: "Clean the house",
-    completed: true
-  },
-  {
-    text: "Finish the book",
-    completed: true
-  },
-  {
-    text: "Cut hair",
-    completed: false
-  }
-];
+let todos = [];
 
 const filters = {
   searchText: "",
   hideCompleted: false
 };
+
+const todosJSON = localStorage.getItem("todos");
+if (todosJSON !== null) {
+  todos = JSON.parse(todosJSON);
+}
 
 const renderTodos = function(todos, filters) {
   const filterTodos = todos.filter(function(todo) {
@@ -67,6 +55,8 @@ document
       text: event.target.elements.todoText.value,
       completed: false
     });
+
+    localStorage.setItem("todos", JSON.stringify(todos));
 
     event.target.elements.todoText.value = "";
     renderTodos(todos, filters);

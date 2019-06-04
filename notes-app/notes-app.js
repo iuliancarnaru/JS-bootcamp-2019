@@ -1,24 +1,15 @@
-const notes = [
-  {
-    title: "My next trip",
-    body: "I would like to go to Spain."
-  },
-  {
-    title: "Habbits to work on",
-    body: "Eat better, sleep earlier."
-  },
-  {
-    title: "Office modification",
-    body: "Get a new 4k monitor"
-  }
-];
+let notes = [];
 
 const filters = {
   searchText: ""
 };
 
-const userJSON = localStorage.getItem("user");
-const user = JSON.parse(userJSON);
+// check for existing saved data in localStorage
+const notesJSON = localStorage.getItem("notes");
+
+if (notesJSON !== null) {
+  notes = JSON.parse(notesJSON);
+}
 
 const renderNotes = function(notes, filters) {
   const filteredNotes = notes.filter(function(note) {
@@ -29,12 +20,31 @@ const renderNotes = function(notes, filters) {
 
   filteredNotes.forEach(function(note) {
     const noteElement = document.createElement("p");
-    noteElement.textContent = note.title;
+
+    if (note.title.length > 0) {
+      noteElement.textContent = note.title;
+    } else {
+      noteElement.textContent = "Unnamed note";
+    }
+
     document.querySelector("#notes").appendChild(noteElement);
   });
 };
 
 renderNotes(notes, filters);
+
+document
+  .querySelector("#create-note")
+  .addEventListener("click", function(event) {
+    notes.push({
+      title: "",
+      body: ""
+    });
+
+    localStorage.setItem("notes", JSON.stringify(notes));
+
+    renderNotes(notes, filters);
+  });
 
 document
   .querySelector("#search-text")
