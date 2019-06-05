@@ -1,40 +1,8 @@
-let todos = [];
+const todos = getSavedTodos();
 
 const filters = {
   searchText: "",
   hideCompleted: false
-};
-
-const todosJSON = localStorage.getItem("todos");
-if (todosJSON !== null) {
-  todos = JSON.parse(todosJSON);
-}
-
-const renderTodos = function(todos, filters) {
-  const filterTodos = todos.filter(function(todo) {
-    const searchTextMatch = todo.text
-      .toLowerCase()
-      .includes(filters.searchText.toLowerCase());
-    const hideCompletedMatch = !filters.hideCompleted || !todo.completed;
-
-    return searchTextMatch && hideCompletedMatch;
-  });
-
-  const incompleteTodos = filterTodos.filter(function(todo) {
-    return !todo.completed;
-  });
-
-  document.querySelector("#todos").innerHTML = "";
-
-  const summary = document.createElement("h2");
-  summary.textContent = `You have ${incompleteTodos.length} todos.`;
-  document.querySelector("#todos").appendChild(summary);
-
-  filterTodos.forEach(function(todo) {
-    const todoElement = document.createElement("p");
-    todoElement.textContent = todo.text;
-    document.querySelector("#todos").appendChild(todoElement);
-  });
 };
 
 renderTodos(todos, filters);
@@ -56,7 +24,7 @@ document
       completed: false
     });
 
-    localStorage.setItem("todos", JSON.stringify(todos));
+    saveTodos(todos);
 
     event.target.elements.todoText.value = "";
     renderTodos(todos, filters);
