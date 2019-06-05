@@ -27,3 +27,12 @@ localStorage.clear(); <-- clear all
     // read
     const userJSON = localStorage.getItem("user");
     const user = JSON.parse(userJSON);
+
+// update pages when localStorage is updated
+
+    window.addEventListener("storage", function(event) {
+        if (event.key === "notes") {
+            notes = JSON.parse(event.newValue);
+            renderNotes(notes, filters);
+        }
+    });
