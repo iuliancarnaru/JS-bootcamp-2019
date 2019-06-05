@@ -1,3 +1,5 @@
+console.log(uuidv4());
+
 // Read existing notes fron localStorage
 const getSavedNotes = function () {
     const notesJSON = localStorage.getItem("notes");
@@ -10,13 +12,22 @@ const getSavedNotes = function () {
 
 // Generate a DOM structure for a note
 const generateNoteDOM = function (note) {
-    const noteElement = document.createElement("p");
+  const noteElement = document.createElement("div");
+  const textElement = document.createElement("span");
+
+  const button = document.createElement("button");
+
+  button.textContent = "x";
+  noteElement.appendChild(button);
+
     if (note.title.length > 0) {
-      noteElement.textContent = note.title;
+      textElement.textContent = note.title;
     } else {
-      noteElement.textContent = "Unnamed note";
+      textElement.textContent = "Unnamed note";
     }
-    return noteElement;
+  
+  noteElement.appendChild(textElement);
+  return noteElement;
 }
 
 // REnder application notes

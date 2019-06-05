@@ -20,6 +20,7 @@ document
     event.preventDefault();
 
     todos.push({
+      id: uuidv4(),
       text: event.target.elements.todoText.value,
       completed: false
     });
