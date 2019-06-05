@@ -10,15 +10,30 @@ const getSavedNotes = function () {
     }
 };
 
+// Remove a note from the list
+const removeNote = function (id) {
+  const noteIndex = notes.findIndex(function (note) {
+    return note.id === id
+  });
+
+  if (noteIndex > -1) {
+    notes.splice(noteIndex, 1);
+  }
+}
+
 // Generate a DOM structure for a note
 const generateNoteDOM = function (note) {
   const noteElement = document.createElement("div");
-  const textElement = document.createElement("span");
+  const textElement = document.createElement("a");
 
   const button = document.createElement("button");
-
   button.textContent = "x";
   noteElement.appendChild(button);
+  button.addEventListener('click', function () {
+    removeNote(note.id);
+    saveNotes(notes);
+    renderNotes(notes, filters);
+  })
 
     if (note.title.length > 0) {
       textElement.textContent = note.title;
@@ -26,6 +41,7 @@ const generateNoteDOM = function (note) {
       textElement.textContent = "Unnamed note";
     }
   
+  textElement.setAttribute("href", `./edit.html#${note.id}`);
   noteElement.appendChild(textElement);
   return noteElement;
 }
@@ -41,3 +57,7 @@ const renderNotes = function(notes, filters) {
       document.querySelector("#notes").appendChild(noteElement);
     });
   };
+
+const saveNotes = function (notes) {
+  localStorage.setItem("notes", JSON.stringify(notes));
+}

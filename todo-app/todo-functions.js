@@ -7,8 +7,28 @@ const getSavedTodos = function() {
   }
 };
 
+const toggleTodo = function (id) {
+  const todo = todos.find(function (todo) {
+    return todo.id === id
+  });
+
+  if (todo !== undefined) {
+    todo.completed = !todo.completed
+  }
+}
+
 const saveTodos = function(todos) {
   localStorage.setItem("todos", JSON.stringify(todos));
+};
+
+const removeTodo = function(id) {
+  const todoIndex = todos.findIndex(function(todo) {
+    return todo.id === id;
+  });
+
+  if (todoIndex > -1) {
+    todos.splice(todoIndex, 1);
+  }
 };
 
 const renderTodos = function(todos, filters) {
@@ -42,13 +62,24 @@ const generateTodoDOM = function(todo) {
   const button = document.createElement("button");
 
   checkboxElement.setAttribute("type", "checkbox");
+  checkboxElement.checked = todo.completed;
   todoElement.appendChild(checkboxElement);
+  checkboxElement.addEventListener('change', function () {
+    toggleTodo(todo.id);
+    saveTodos(todos);
+    renderTodos(todos, filters);
+  });
 
   textElement.textContent = todo.text;
   todoElement.appendChild(textElement);
 
   button.textContent = "x";
   todoElement.appendChild(button);
+  button.addEventListener("click", function() {
+    removeTodo(todo.id);
+    saveTodos(todos);
+    renderTodos(todos, filters);
+  });
 
   return todoElement;
 };
