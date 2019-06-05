@@ -7,15 +7,15 @@ const getSavedTodos = function() {
   }
 };
 
-const toggleTodo = function (id) {
-  const todo = todos.find(function (todo) {
-    return todo.id === id
+const toggleTodo = function(id) {
+  const todo = todos.find(function(todo) {
+    return todo.id === id;
   });
 
   if (todo !== undefined) {
-    todo.completed = !todo.completed
+    todo.completed = !todo.completed;
   }
-}
+};
 
 const saveTodos = function(todos) {
   localStorage.setItem("todos", JSON.stringify(todos));
@@ -64,7 +64,7 @@ const generateTodoDOM = function(todo) {
   checkboxElement.setAttribute("type", "checkbox");
   checkboxElement.checked = todo.completed;
   todoElement.appendChild(checkboxElement);
-  checkboxElement.addEventListener('change', function () {
+  checkboxElement.addEventListener("change", function() {
     toggleTodo(todo.id);
     saveTodos(todos);
     renderTodos(todos, filters);
