@@ -36,3 +36,24 @@ localStorage.clear(); <-- clear all
             renderNotes(notes, filters);
         }
     });
+
+// working with dates - date object
+
+    const now = new Date(); <-- current point in time
+    const timestamp = now.getTime();
+
+    const myDate = newDate(timestamp);
+    console.log(myDate.getFullYear());
+
+// working with dates - moment.js library
+
+    const now = moment(); <-- current point in time
+    now.add(1, 'year').subtract(2, 'days');
+
+    console.log(now.toString());
+    now.format(String) <-- new.format("MMMM Do YYYY");
+
+    console.log(now.fromNow()); <-- in a year
+    const nowTimestamp = now.valueOf();
+
+    console.log(moment(nowTimestamp).toString());
