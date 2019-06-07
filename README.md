@@ -57,3 +57,14 @@ localStorage.clear(); <-- clear all
     const nowTimestamp = now.valueOf();
 
     console.log(moment(nowTimestamp).toString());
+
+// TRUTHY - values that resolve to TRUE in a boolean context
+// FALSY - values that resolve to FALSE in a boolean context
+
+    TRUTHY: all the others
+
+    FALSY: false, 0, -0, "", null, undefined, NaN
+
+// Ternary operator
+
+    return (condition) ? TRUE : FALSE
