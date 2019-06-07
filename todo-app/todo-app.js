@@ -7,33 +7,27 @@ const filters = {
 
 renderTodos(todos, filters);
 
-document
-  .querySelector("#search-text")
-  .addEventListener("input", function(event) {
-    filters.searchText = event.target.value;
-    renderTodos(todos, filters);
+document.querySelector("#search-text").addEventListener("input", event => {
+  filters.searchText = event.target.value;
+  renderTodos(todos, filters);
+});
+
+document.querySelector("#todo-form").addEventListener("submit", event => {
+  event.preventDefault();
+
+  todos.push({
+    id: uuidv4(),
+    text: event.target.elements.todoText.value,
+    completed: false
   });
 
-document
-  .querySelector("#todo-form")
-  .addEventListener("submit", function(event) {
-    event.preventDefault();
+  saveTodos(todos);
 
-    todos.push({
-      id: uuidv4(),
-      text: event.target.elements.todoText.value,
-      completed: false
-    });
+  event.target.elements.todoText.value = "";
+  renderTodos(todos, filters);
+});
 
-    saveTodos(todos);
-
-    event.target.elements.todoText.value = "";
-    renderTodos(todos, filters);
-  });
-
-document
-  .querySelector("#hide-completed")
-  .addEventListener("change", function(event) {
-    filters.hideCompleted = event.target.checked;
-    renderTodos(todos, filters);
-  });
+document.querySelector("#hide-completed").addEventListener("change", event => {
+  filters.hideCompleted = event.target.checked;
+  renderTodos(todos, filters);
+});

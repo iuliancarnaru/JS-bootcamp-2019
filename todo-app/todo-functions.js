@@ -7,32 +7,26 @@ const getSavedTodos = function() {
   }
 };
 
-const toggleTodo = function(id) {
-  const todo = todos.find(function(todo) {
-    return todo.id === id;
-  });
+const toggleTodo = id => {
+  const todo = todos.find(todo => todo.id === id);
 
   if (todo !== undefined) {
     todo.completed = !todo.completed;
   }
 };
 
-const saveTodos = function(todos) {
-  localStorage.setItem("todos", JSON.stringify(todos));
-};
+const saveTodos = todos => localStorage.setItem("todos", JSON.stringify(todos));
 
-const removeTodo = function(id) {
-  const todoIndex = todos.findIndex(function(todo) {
-    return todo.id === id;
-  });
+const removeTodo = id => {
+  const todoIndex = todos.findIndex(todo => todo.id === id);
 
   if (todoIndex > -1) {
     todos.splice(todoIndex, 1);
   }
 };
 
-const renderTodos = function(todos, filters) {
-  const filterTodos = todos.filter(function(todo) {
+const renderTodos = (todos, filters) => {
+  const filterTodos = todos.filter(todo => {
     const searchTextMatch = todo.text
       .toLowerCase()
       .includes(filters.searchText.toLowerCase());
@@ -41,21 +35,19 @@ const renderTodos = function(todos, filters) {
     return searchTextMatch && hideCompletedMatch;
   });
 
-  const incompleteTodos = filterTodos.filter(function(todo) {
-    return !todo.completed;
-  });
+  const incompleteTodos = filterTodos.filter(todo => !todo.completed);
 
   document.querySelector("#todos").innerHTML = "";
   document
     .querySelector("#todos")
     .appendChild(generateSummaryDOM(incompleteTodos));
 
-  filterTodos.forEach(function(todo) {
+  filterTodos.forEach(todo => {
     document.querySelector("#todos").appendChild(generateTodoDOM(todo));
   });
 };
 
-const generateTodoDOM = function(todo) {
+const generateTodoDOM = todo => {
   const todoElement = document.createElement("div");
   const checkboxElement = document.createElement("input");
   const textElement = document.createElement("span");
@@ -84,7 +76,7 @@ const generateTodoDOM = function(todo) {
   return todoElement;
 };
 
-const generateSummaryDOM = function(incompleteTodos) {
+const generateSummaryDOM = incompleteTodos => {
   const summary = document.createElement("h2");
   summary.textContent = `You have ${incompleteTodos.length} todos.`;
   return summary;
