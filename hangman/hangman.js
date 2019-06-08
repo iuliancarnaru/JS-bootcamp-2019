@@ -8,11 +8,15 @@ const Hangman = function(word, remaningGuesses) {
 };
 
 Hangman.prototype.calculateStatus = function() {
-  const lettersUnguessd = this.word.filter(letter => {
-    return !this.guessedLetters.includes(letter);
-  });
+  // const lettersUnguessd = this.word.filter(letter => {
+  //   return !this.guessedLetters.includes(letter);
+  // });
 
-  const finished = lettersUnguessd.length === 0
+  // const finished = lettersUnguessd.length === 0
+
+  const finished = this.word.every(letter => {
+    return this.guessedLetters.includes(letter);
+  });
 
   if (this.remaningGuesses === 0) {
     this.status = "failed";
