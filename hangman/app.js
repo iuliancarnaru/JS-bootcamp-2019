@@ -13,3 +13,11 @@ window.addEventListener("keypress", event => {
   puzzleElement.textContent = game1.puzzle;
   guessesElement.textContent = game1.statusMessage;
 });
+
+getPuzzle((error, puzzle) => {
+  if (error) {
+    console.log(`Error: ${error}`);
+  } else {
+    console.log(puzzle);
+  }
+});
