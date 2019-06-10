@@ -6,7 +6,8 @@ class Hangman {
     this.guessedLetters = [];
     this.status = "playing";
   }
-  getStatusMessage() {
+
+  get statusMessage() {
     if (this.status === "playing") {
       return `Guesses left: ${this.remaningGuesses}`;
     }
@@ -17,6 +18,7 @@ class Hangman {
       return `Great work! You guessed the word.`;
     }
   }
+
   calculateStatus() {
     // const lettersUnguessd = this.word.filter(letter => {
     //   return !this.guessedLetters.includes(letter);
@@ -35,7 +37,8 @@ class Hangman {
       this.status = "playing";
     }
   }
-  getPuzzle() {
+
+  get puzzle() {
     let puzzle = "";
     this.word.forEach(letter => {
       if (this.guessedLetters.includes(letter) || letter === " ") {
@@ -47,6 +50,7 @@ class Hangman {
     });
     return puzzle;
   }
+
   makeGuess(guess) {
     guess = guess.toLowerCase();
     const isUnique = !this.guessedLetters.includes(guess);
