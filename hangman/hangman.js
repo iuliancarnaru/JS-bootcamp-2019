@@ -10,11 +10,9 @@ class Hangman {
   get statusMessage() {
     if (this.status === "playing") {
       return `Guesses left: ${this.remaningGuesses}`;
-    }
-    else if (this.status === "failed") {
+    } else if (this.status === "failed") {
       return `Nice try! The word was "${this.word.join("")}"`;
-    }
-    else {
+    } else {
       return `Great work! You guessed the word.`;
     }
   }
@@ -24,16 +22,15 @@ class Hangman {
     //   return !this.guessedLetters.includes(letter);
     // });
     // const finished = lettersUnguessd.length === 0
-    const finished = this.word.every(letter => {
-      return this.guessedLetters.includes(letter);
-    });
+
+    const finished = this.word.every(
+      letter => this.guessedLetters.includes(letter) || letter === " "
+    );
     if (this.remaningGuesses === 0) {
       this.status = "failed";
-    }
-    else if (finished) {
+    } else if (finished) {
       this.status = "finished";
-    }
-    else {
+    } else {
       this.status = "playing";
     }
   }
@@ -43,8 +40,7 @@ class Hangman {
     this.word.forEach(letter => {
       if (this.guessedLetters.includes(letter) || letter === " ") {
         puzzle += letter;
-      }
-      else {
+      } else {
         puzzle += "*";
       }
     });
@@ -67,8 +63,3 @@ class Hangman {
     this.calculateStatus();
   }
 }
-
-
-
-
-
