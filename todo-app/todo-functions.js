@@ -43,20 +43,28 @@ const renderTodos = (todos, filters) => {
     .querySelector("#todos")
     .appendChild(generateSummaryDOM(incompleteTodos));
 
-  filterTodos.forEach(todo => {
-    document.querySelector("#todos").appendChild(generateTodoDOM(todo));
-  });
+  if (todos.length > 0) {
+    filterTodos.forEach(todo => {
+      document.querySelector("#todos").appendChild(generateTodoDOM(todo));
+    });
+  } else {
+    const emptyMessage = document.createElement("p");
+    emptyMessage.textContent = `No todos to show`;
+    emptyMessage.classList.add("empty-message");
+    document.querySelector("#todos").appendChild(emptyMessage);
+  }
 };
 
 const generateTodoDOM = todo => {
-  const todoElement = document.createElement("div");
+  const todoElement = document.createElement("label");
+  const containerElement = document.createElement("div");
   const checkboxElement = document.createElement("input");
   const textElement = document.createElement("span");
   const button = document.createElement("button");
 
   checkboxElement.setAttribute("type", "checkbox");
   checkboxElement.checked = todo.completed;
-  todoElement.appendChild(checkboxElement);
+  containerElement.appendChild(checkboxElement);
   checkboxElement.addEventListener("change", function() {
     toggleTodo(todo.id);
     saveTodos(todos);
@@ -64,9 +72,15 @@ const generateTodoDOM = todo => {
   });
 
   textElement.textContent = todo.text;
-  todoElement.appendChild(textElement);
+  containerElement.appendChild(textElement);
 
-  button.textContent = "x";
+  // setup container
+  todoElement.classList.add("list-item");
+  containerElement.classList.add("list-item__container");
+  todoElement.appendChild(containerElement);
+
+  button.textContent = "remove";
+  button.classList.add("button", "button--text");
   todoElement.appendChild(button);
   button.addEventListener("click", function() {
     removeTodo(todo.id);
@@ -79,6 +93,8 @@ const generateTodoDOM = todo => {
 
 const generateSummaryDOM = incompleteTodos => {
   const summary = document.createElement("h2");
-  summary.textContent = `You have ${incompleteTodos.length} todos.`;
+  const text = incompleteTodos.length === 1 ? "todo" : "todos";
+  summary.classList.add("list-title");
+  summary.textContent = `You have ${incompleteTodos.length} ${text}.`;
   return summary;
 };

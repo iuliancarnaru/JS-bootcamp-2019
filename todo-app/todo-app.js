@@ -15,16 +15,22 @@ document.querySelector("#search-text").addEventListener("input", event => {
 document.querySelector("#todo-form").addEventListener("submit", event => {
   event.preventDefault();
 
-  todos.push({
-    id: uuidv4(),
-    text: event.target.elements.todoText.value,
-    completed: false
-  });
+  const text = event.target.elements.todoText.value.trim();
 
-  saveTodos(todos);
+  if (text.length > 0) {
+    todos.push({
+      id: uuidv4(),
+      text,
+      completed: false
+    });
+  
+    saveTodos(todos);
+  
+    event.target.elements.todoText.value = "";
+    renderTodos(todos, filters);
+  }
 
-  event.target.elements.todoText.value = "";
-  renderTodos(todos, filters);
+
 });
 
 document.querySelector("#hide-completed").addEventListener("change", event => {
