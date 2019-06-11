@@ -25,17 +25,3 @@ window.addEventListener("keypress", event => {
 getPuzzle("2")
   .then(puzzle => console.log(puzzle))
   .catch(error => console.log(error));
-
-// EXERCISE
-
-// getCountry("RO", (error, country) => {
-//   if (error) {
-//     console.log(`Error: ${error}`);
-//   } else {
-//     console.log(`Country name: ${country.name}`);
-//   }
-// });
-
-getCountry("RO")
-  .then(country => console.log(`Country name: ${country.name}`))
-  .catch(error => console.log(`Error: ${error}`));
