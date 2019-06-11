@@ -4,26 +4,39 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="style.css">
     <title>Notes App</title>
   </head>
 
   <body>
-    <h1>Notes App</h1>
-    <h2>Take notes and never forget</h2>
-    <button id="create-note">Create new note</button>
-    <input
-      type="text"
-      name="search-text"
-      id="search-text"
-      placeholder="Filter notes"
-    />
-    <select id="filter-by">
-      <option value="byEdited">Sort by last edited</option>
-      <option value="byCreated">Sort by recently created</option>
-      <option value="alphabetical">Sort alphabeticaly</option>
-    </select>
+    <header class="header">
+      <div class="container">
+          <h1 class="header__title">Notes App</h1>
+          <h2 class="header__subtitle">Take notes and never forget</h2>
+      </div>
+    </header>
+
+    <div class="actions">
+      <div class="actions__container">
+          <input
+            class="input"
+            type="text"
+            name="search-text"
+            id="search-text"
+            placeholder="Filter notes"
+          />
+          <select class="dropdown" id="filter-by">
+            <option value="byEdited">Sort by last edited</option>
+            <option value="byCreated">Sort by recently created</option>
+            <option value="alphabetical">Sort alphabeticaly</option>
+          </select>
+      </div>
+    </div>
+
+
 
     <div id="notes"><!-- JS inserted notes--></div>
+    <button id="create-note">Create new note</button>
 
     <script src="./uuidv4.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js"></script>
