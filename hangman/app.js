@@ -22,14 +22,9 @@ window.addEventListener("keypress", event => {
 //   }
 // });
 
-getPuzzle("2").then(
-  puzzle => {
-    console.log(puzzle);
-  },
-  error => {
-    console.log(`Error: ${error}`);
-  }
-);
+getPuzzle("2")
+  .then(data => console.log(data.puzzle))
+  .catch(error => console.log(error));
 
 // EXERCISE
 
@@ -41,11 +36,11 @@ getPuzzle("2").then(
 //   }
 // });
 
-getCountry("RO").then(
-  country => {
-    console.log(`Country name: ${country.name}`);
-  },
-  error => {
-    console.log(`Error: ${error}`);
-  }
-);
+// getCountry("RO").then(
+//   country => {
+//     console.log(`Country name: ${country.name}`);
+//   },
+//   error => {
+//     console.log(`Error: ${error}`);
+//   }
+// );
