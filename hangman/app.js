@@ -10,26 +10,20 @@ window.addEventListener("keypress", event => {
   render();
 });
 
-// getPuzzle("2", (error, puzzle) => {
-//   if (error) {
-//     console.log(`Error: ${error}`);
-//   } else {
-//     console.log(puzzle);
-//   }
-// });
-
-// getPuzzle("2")
-//   .then(puzzle => console.log(puzzle))
-//   .catch(error => console.log(error));
-
 const render = () => {
-  puzzleElement.textContent = game1.puzzle;
+  puzzleElement.innerHTML = '';
   guessesElement.textContent = game1.statusMessage;
+
+  game1.puzzle.split('').forEach(letter => {
+    const letterElement = document.createElement('span');
+    letterElement.textContent = letter;
+    puzzleElement.appendChild(letterElement);
+  })
 };
 
 const startGame = async () => {
   const puzzle = await getPuzzle("2");
-  game1 = new Hangman(puzzle, 3);
+  game1 = new Hangman(puzzle, 5);
   render();
 };
 
