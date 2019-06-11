@@ -21,13 +21,13 @@ const getDataPromise = data =>
   new Promise((resolve, reject) => {
     setTimeout(() => {
       // success
-      resolve(`This is the promise data`, data);
+      resolve(`This is the promise data: ${data}`);
       // fail
       // reject(`Upps! Something happened!`);
     }, 2000);
   });
 
-const myPromise = getDataPromise({ name: "Iulian" });
+const myPromise = getDataPromise("Iulian");
 
 myPromise.then(
   data => {
