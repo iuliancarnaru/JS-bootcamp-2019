@@ -1,39 +1,52 @@
 // CALLBACK
-const getDataCallback = callback => {
+const getDataCallback = (num, callback) => {
   setTimeout(() => {
-    // success
-    callback(undefined, `This is the data`);
-    // fail
-    // callback(`Upps! Something happened!`, undefined);
+    if (typeof num === "number") {
+      // success
+      callback(undefined, num * 2);
+    } else {
+      // fail
+      callback(`Number must be provided!`, undefined);
+    }
   }, 2000);
 };
 
-getDataCallback((error, data) => {
+// CALLBACK HELL --> deep nested code
+getDataCallback(2, (error, data) => {
   if (error) {
     console.log(`Error:`, error);
   } else {
-    console.log(data);
+    getDataCallback(data, (error, data) => {
+      if (error) {
+        console.log(`Error:`, error);
+      } else {
+        console.log(data);
+      }
+    });
   }
 });
 
 // PROMISE
-const getDataPromise = data =>
+const getDataPromise = num =>
   new Promise((resolve, reject) => {
     setTimeout(() => {
-      // success
-      resolve(`This is the promise data: ${data}`);
-      // fail
-      // reject(`Upps! Something happened!`);
+      typeof num === "number"
+        ? resolve(num * 2)
+        : reject(`Number must be provided!`);
     }, 2000);
   });
 
-const myPromise = getDataPromise("Iulian");
-
-myPromise.then(
-  data => {
+// PROMISE CHAIN
+getDataPromise(10)
+  .then(data => {
+    return getDataPromise(data);
+  })
+  .then(data => {
+    return getDataPromise(data);
+  })
+  .then(data => {
     console.log(data);
-  },
-  error => {
-    console.log(`Error:`, error);
-  }
-);
+  })
+  .catch(error => {
+    console.log(error);
+  });
