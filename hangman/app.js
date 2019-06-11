@@ -23,7 +23,7 @@ window.addEventListener("keypress", event => {
 // });
 
 getPuzzle("2")
-  .then(data => console.log(data.puzzle))
+  .then(puzzle => console.log(puzzle))
   .catch(error => console.log(error));
 
 // EXERCISE
@@ -36,11 +36,6 @@ getPuzzle("2")
 //   }
 // });
 
-// getCountry("RO").then(
-//   country => {
-//     console.log(`Country name: ${country.name}`);
-//   },
-//   error => {
-//     console.log(`Error: ${error}`);
-//   }
-// );
+getCountry("RO")
+  .then(country => console.log(`Country name: ${country.name}`))
+  .catch(error => console.log(`Error: ${error}`));
