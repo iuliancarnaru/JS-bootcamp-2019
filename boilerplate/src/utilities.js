@@ -5,4 +5,4 @@ export const add = (a, b) => {
     return a + b
 }
 
-export const name = "Iulian";
+export const name = "Iulian Carnaru";
