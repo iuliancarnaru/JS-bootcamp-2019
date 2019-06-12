@@ -104,3 +104,7 @@ localStorage.clear(); <-- clear all
     data.location = "Bucharest   ";
 
     console.log(data);
+
+// Get list of globally installed packages
+
+    npm list -g --depth 0
